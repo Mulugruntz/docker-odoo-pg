@@ -1,0 +1,37 @@
+version: '2.2'
+services:
+  odoo_web:
+    image: odoo:12.0
+    restart: always
+    mem_limit: 1572864
+    mem_reservation: 128m
+    cpus: 0.5
+    depends_on:
+      - odoo_db
+    ports:
+      - "8069:8069"
+    environment:
+    - USER=${PGUSER}
+    - PASSWORD=${PGPASSWORD}
+    volumes:
+      - odoo_odoo-web-config:/etc/odoo
+      - /opt/docker-containers/odoo/addons:/mnt/extra-addons
+      - /opt/docker-containers/odoo/data:/var/lib/odoo
+  odoo_db:
+    image: postgres:11.1-alpine
+    restart: always
+    mem_limit: 1572864
+    mem_reservation: 128m
+    cpus: 0.5
+    environment:
+      - POSTGRES_USER={PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo_odoo-db:/var/lib/postgresql
+      - odoo_odoo-db-data:/var/lib/postgresql/data
+
+volumes:
+  odoo_odoo-web-config:
+  odoo_odoo-db:
+  odoo_odoo-db-data:
