@@ -5,7 +5,7 @@ services:
     restart: always
     mem_limit: 1572864
     mem_reservation: 128m
-    cpus: 0.5
+    cpu_quota: 50000
     depends_on:
       - odoo_db
     ports:
@@ -22,7 +22,7 @@ services:
     restart: always
     mem_limit: 1572864
     mem_reservation: 128m
-    cpus: 0.5
+    cpu_quota: 50000
     environment:
       - POSTGRES_USER={PGUSER}
       - POSTGRES_PASSWORD=${PGPASSWORD}
