@@ -3,8 +3,8 @@ services:
   odoo_web:
     image: odoo:12.0
     restart: always
-    mem_limit: 1572864
-    mem_reservation: 128m
+    mem_limit: 16106127360
+    mem_reservation: 134217728
     cpu_quota: 50000
     depends_on:
       - odoo_db
@@ -20,8 +20,8 @@ services:
   odoo_db:
     image: postgres:11.1-alpine
     restart: always
-    mem_limit: 1572864
-    mem_reservation: 128m
+    mem_limit: 16106127360
+    mem_reservation: 134217728
     cpu_quota: 50000
     environment:
       - POSTGRES_USER={PGUSER}
