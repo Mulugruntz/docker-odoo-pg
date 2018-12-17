@@ -15,8 +15,8 @@ services:
     - PASSWORD=${PGPASSWORD}
     volumes:
       - odoo_odoo-web-config:/etc/odoo
-      - /opt/docker-containers/odoo/addons:/mnt/extra-addons
-      - /opt/docker-containers/odoo/data:/var/lib/odoo
+      - /share/docker-appdata/odoo/addons:/mnt/extra-addons
+      - /share/docker-appdata/odoo/data:/var/lib/odoo
   odoo_db:
     image: postgres:11.1-alpine
     restart: always
