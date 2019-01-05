@@ -1,11 +1,8 @@
-version: '2'
+version: '3'
 services:
   odoo_web:
     image: odoo:12.0
     restart: always
-    mem_limit: 16106127360
-    mem_reservation: 134217728
-    cpu_quota: 50000
     depends_on:
       - odoo_db
     ports:
@@ -17,12 +14,16 @@ services:
       - odoo_odoo-web-config:/etc/odoo
       - /share/docker-appdata/odoo/addons:/mnt/extra-addons
       - /share/docker-appdata/odoo/data:/var/lib/odoo
+    resources:
+      limits:
+        cpus: '0.5'
+        memory: 1G
+      reservations:
+        cpus: '0.1'
+        memory: 50M
   odoo_db:
     image: postgres:11.1-alpine
     restart: always
-    mem_limit: 16106127360
-    mem_reservation: 134217728
-    cpu_quota: 50000
     environment:
       - POSTGRES_USER={PGUSER}
       - POSTGRES_PASSWORD=${PGPASSWORD}
@@ -30,6 +31,13 @@ services:
     volumes:
       - odoo_odoo-db:/var/lib/postgresql
       - odoo_odoo-db-data:/var/lib/postgresql/data
+    resources:
+      limits:
+        cpus: '0.5'
+        memory: 1G
+      reservations:
+        cpus: '0.1'
+        memory: 50M
 
 volumes:
   odoo_odoo-web-config:

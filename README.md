@@ -4,7 +4,7 @@ Dockerfile for Odoo on PostgreSQL
 
 ## Uses
 
- * [Docker Engine 1.13.0+](https://www.docker.com/get-started) (for docker-compose 2.2)
+ * [Docker Engine 1.13.0+](https://www.docker.com/get-started) (for docker-compose 3)
  * [Odoo 12.0](https://hub.docker.com/_/odoo/)
  * [Postgresql 11.1 (alpine)](https://hub.docker.com/_/postgres/)
 
@@ -25,12 +25,14 @@ Go where your `docker-compose.yml` is and run:
 
 ### Odoo
 
- * Memory limit: 1.5GB
- * Memory reservation: 128MB
+ * Memory limit: 1GB
+ * Memory reservation: 50MB
  * CPUs: 0.5
+ * CPUs reservation: 0.1
 
 ### PostgreSQL
 
- * Memory limit: 1.5GB
- * Memory reservation: 128MB
+ * Memory limit: 1GB
+ * Memory reservation: 50MB
  * CPUs: 0.5
+ * CPUs reservation: 0.1
